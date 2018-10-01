@@ -12,6 +12,10 @@ podTemplate(label: 'mypod', containers: [
             git url: 'https://github.com/adessoSchweiz/belimo-mobile'
         }
 
+        stage('install appium') {
+            sh 'yum install appium -y'
+        }
+
         stage('system tests') {
             container('maven') {
                 sh "mvn clean integration-test failsafe:integration-test failsafe:verify"
