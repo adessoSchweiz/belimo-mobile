@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
+import java.io.*;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,9 +21,52 @@ public class MobileIT {
     static WebElement el;
     static String cssVal;
     static AndroidDriver androidDriver;
+    static Process p;
+
+    static boolean APPIUM_STARTED = false;
+
+    // This method Is responsible for starting appium server.
+    public static void appiumStart() throws IOException, InterruptedException {
+        // Execute command string to start appium server.
+        p = Runtime.getRuntime().exec("appium");
+        final InputStream stream = p.getInputStream();
+        new Thread(new Runnable() {
+            public void run() {
+                BufferedReader reader = null;
+                try {
+                    reader = new BufferedReader(new InputStreamReader(stream));
+                    String line = null;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                        if (line.contains("Appium REST http interface listener started on 0.0.0.0:4723")) {
+                            System.out.println("Appium server Is started now.");
+                            APPIUM_STARTED = true;
+                        }
+                    }
+                } catch (Exception e) {
+                    // TODO
+                } finally {
+                    if (reader != null) {
+                        try {
+                            reader.close();
+                        } catch (IOException e) {
+                            // ignore
+                        }
+                    }
+                }
+            }
+        }).start();
+
+        while (!APPIUM_STARTED) {
+            System.out.println("not started yet");
+            Thread.sleep(1000);
+        }
+    }
 
     @BeforeClass
     public static void setUp() throws Exception {
+        appiumStart();
+
         System.out.println("Der Test wird in Appium gestartet!!!!");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "testDevice");
@@ -31,7 +74,7 @@ public class MobileIT {
         capabilities.setCapability("platformVersion", "7");
         capabilities.setCapability("autoGrantPermissions", "true");
 
-        File file = new File("/home/vagrant/projects/", "adesso.spesenverwaltung.apk");
+        File file = new File("./adesso.spesenverwaltung.apk");
 
         capabilities.setCapability("app", file.getAbsolutePath());
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
@@ -47,6 +90,7 @@ public class MobileIT {
 
     @AfterClass
     public static void tearDown() {
+        p.destroy();
         driver.quit();
     }
 
