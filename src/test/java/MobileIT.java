@@ -71,11 +71,10 @@ public class MobileIT {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability(CapabilityType.PLATFORM, "Android");
-        capabilities.setCapability("platformVersion", "7");
+        capabilities.setCapability("platformVersion", "4.4.2");
         capabilities.setCapability("autoGrantPermissions", "true");
 
         File file = new File("./adesso.spesenverwaltung.apk");
-        System.out.println("file.exists() = " + file.exists());
 
         capabilities.setCapability("app", file.getAbsolutePath());
         driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
