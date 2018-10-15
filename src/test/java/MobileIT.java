@@ -74,7 +74,8 @@ public class MobileIT {
         capabilities.setCapability("platformVersion", "4.4.2");
         capabilities.setCapability("autoGrantPermissions", "true");
 
-        File file = new File("/adesso.spesenverwaltung.apk");
+        //File file = new File("/adesso.spesenverwaltung.apk");
+        File file = new File("/InsuranceCalculator.apk");
 
         capabilities.setCapability("app", file.getAbsolutePath());
         driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
