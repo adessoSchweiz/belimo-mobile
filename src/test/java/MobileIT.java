@@ -65,7 +65,7 @@ public class MobileIT {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        appiumStart();
+        // appiumStart();
 
         System.out.println("Der Test wird in Appium gestartet!!!!");
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -77,7 +77,7 @@ public class MobileIT {
         File file = new File("./adesso.spesenverwaltung.apk");
 
         capabilities.setCapability("app", file.getAbsolutePath());
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
@@ -88,11 +88,13 @@ public class MobileIT {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
+    /*
     @AfterClass
     public static void tearDown() {
         p.destroy();
         driver.quit();
     }
+    */
 
     @Test
     public void loginStep() throws Exception {
