@@ -15,13 +15,11 @@ podTemplate(label: 'mypod', containers: [
 
         stage('system tests') {
             container('appium') {
-                container('appium') {
-                    container('maven') {
-                        sh "mvn clean integration-test failsafe:integration-test failsafe:verify"
-                    }
+                container('maven') {
+                    sh "mvn clean integration-test failsafe:integration-test failsafe:verify"
                 }
-                junit allowEmptyResults: true, testResults: '**/target/failsafe-reports/TEST-*.xml'
             }
+            junit allowEmptyResults: true, testResults: '**/target/failsafe-reports/TEST-*.xml'
         }
     }
 }
