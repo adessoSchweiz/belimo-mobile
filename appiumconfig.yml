@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: appium
-        image: appium/appium:1.9.1-p0
+        image: robertbrem/appium:0.0.1
         ports:
         - containerPort: 4723
 ---

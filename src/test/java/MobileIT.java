@@ -69,7 +69,7 @@ public class MobileIT {
 
         System.out.println("Der Test wird in Appium gestartet!!!!");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "testDevice");
+        capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability(CapabilityType.PLATFORM, "Android");
         capabilities.setCapability("platformVersion", "7");
         capabilities.setCapability("autoGrantPermissions", "true");
