@@ -20,6 +20,11 @@ spec:
         image: robertbrem/appium:0.0.1
         ports:
         - containerPort: 4723
+        env:
+        - name: EMULATOR
+          value: "android-22"
+        - name: ARCH
+          value: "x86"
 ---
 apiVersion: v1
 kind: Service
