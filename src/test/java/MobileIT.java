@@ -81,12 +81,12 @@ public class MobileIT {
         driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-        List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
+        // List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
         //user
-        userAndPass.get(0).sendKeys("test");
+        // userAndPass.get(0).sendKeys("test");
         //pw
-        userAndPass.get(1).sendKeys("test");
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        // userAndPass.get(1).sendKeys("test");
+        // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     /*
