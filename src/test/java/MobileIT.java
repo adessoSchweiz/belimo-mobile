@@ -71,21 +71,22 @@ public class MobileIT {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability(CapabilityType.PLATFORM, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "7.1.1");
         capabilities.setCapability("autoGrantPermissions", "true");
 
         //File file = new File("/adesso.spesenverwaltung.apk");
-        File file = new File("/InsuranceCalculator.apk");
+        File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
 
         capabilities.setCapability("app", file.getAbsolutePath());
-        driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        //driver = new AppiumDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
         //user
-        userAndPass.get(0).sendKeys("test");
+        //userAndPass.get(0).sendKeys("test");
         //pw
-        userAndPass.get(1).sendKeys("test");
+        //userAndPass.get(1).sendKeys("test");
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
