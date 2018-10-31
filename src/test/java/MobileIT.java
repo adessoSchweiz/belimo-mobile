@@ -79,11 +79,12 @@ public class MobileIT {
 
         if (adesso_App == true) {
             System.out.println("Der Test verwenden: insurance App!!!!");
-            //File file = new File("/adesso.spesenverwaltung.apk");
-            File file = new File("/InsuranceCalculator.apk");
+            File file = new File("/adesso.spesenverwaltung.apk");
+            //File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
         } else{
-            File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            //File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
         }
 
