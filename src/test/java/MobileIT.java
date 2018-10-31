@@ -24,6 +24,9 @@ public class MobileIT {
     static Process p;
 
     static boolean APPIUM_STARTED = false;
+    static boolean  local_Execution = false;
+    static boolean adesso_App = false;
+
 
     // This method Is responsible for starting appium server.
     public static void appiumStart() throws IOException, InterruptedException {
@@ -71,14 +74,32 @@ public class MobileIT {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability(CapabilityType.PLATFORM, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
+
         capabilities.setCapability("autoGrantPermissions", "true");
 
-        File file = new File("/adesso.spesenverwaltung.apk");
-       // File file = new File("/InsuranceCalculator.apk");
+        if (adesso_App == true) {
+            File file = new File("/adesso.spesenverwaltung.apk");
+            capabilities.setCapability("app", file.getAbsolutePath());
+        } else{
+            File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            capabilities.setCapability("app", file.getAbsolutePath());
+        }
 
-        capabilities.setCapability("app", file.getAbsolutePath());
-        driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+
+
+        if (local_Execution == true) {
+            driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+            capabilities.setCapability("platformVersion", "5.1.1");
+            System.out.println("Appium server Is started now.");
+
+        } else        {
+            driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            capabilities.setCapability("platformVersion", "7.1.1");
+            //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            local_Execution = true;
+            System.out.println("Appium server Is started now.");
+        }
+        //driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         // List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
