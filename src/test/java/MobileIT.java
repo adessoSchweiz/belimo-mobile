@@ -90,9 +90,11 @@ public class MobileIT {
 
 
         if (local_Execution == true) {
-            //driver = new AppiumDriver(new URL("http://appium:4723/wd/hub"), capabilities);
-            driver = new AppiumDriver(new URL("http://10.47.0.2:4723/wd/hub"), capabilities);
-            capabilities.setCapability("platformVersion", "5.1.1");
+            driver = new AppiumDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+            //driver = new AppiumDriver(new URL("http://10.47.0.2:4723/wd/hub"), capabilities);
+            //capabilities.setCapability("platformVersion", "5.1.1");
+            capabilities.setCapability("platformVersion", "7.1.1");
+
             System.out.println("Appium server is started now on Server.");
 
         } else        {
