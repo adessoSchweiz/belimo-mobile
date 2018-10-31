@@ -78,7 +78,9 @@ public class MobileIT {
         capabilities.setCapability("autoGrantPermissions", "true");
 
         if (adesso_App == true) {
-            File file = new File("/adesso.spesenverwaltung.apk");
+            System.out.println("Der Test verwenden: insurance App!!!!");
+            //File file = new File("/adesso.spesenverwaltung.apk");
+            File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
         } else{
             File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
@@ -88,9 +90,9 @@ public class MobileIT {
 
 
         if (local_Execution == true) {
-            driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+            driver = new AppiumDriver(new URL("http://appium:4723/wd/hub"), capabilities);
             capabilities.setCapability("platformVersion", "5.1.1");
-            System.out.println("Appium server Is started now.");
+            System.out.println("Appium server is started now on Server.");
 
         } else        {
             driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
