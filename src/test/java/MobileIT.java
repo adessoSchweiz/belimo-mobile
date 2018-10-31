@@ -24,7 +24,7 @@ public class MobileIT {
     static Process p;
 
     static boolean APPIUM_STARTED = false;
-    static boolean  local_Execution = false;
+    static boolean  local_Execution = true;
     static boolean adesso_App = false;
 
 
