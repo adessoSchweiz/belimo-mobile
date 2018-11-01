@@ -93,8 +93,8 @@ public class MobileIT {
             //File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
         } else{
-           File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
-            //File file = new File("/InsuranceCalculator.apk");
+          // File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
 
            }
