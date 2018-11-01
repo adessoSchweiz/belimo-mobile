@@ -113,7 +113,7 @@ public class MobileIT {
             System.out.println("Appium server Is started now.");
         }
         //driver = new AndroidDriver(new URL("http://appium:4723/wd/hub"), capabilities);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         // List<WebElement> userAndPass = driver.findElementsByClassName("android.widget.EditText");
         //user
