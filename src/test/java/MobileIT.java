@@ -107,7 +107,7 @@ public class MobileIT {
 
             //WebDriver chrome = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), chromeCapabilities);
             //WebDriver chrome = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-            WebDriver driver = new RemoteWebDriver(new URL("http://appium:4723/wd/hub"), capabilities);
+            WebDriver driver = new RemoteWebDriver(new URL("http://10.98.171.74:4723/wd/hub"), capabilities);
 
 
             // run against chrome
