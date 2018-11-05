@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -29,8 +30,8 @@ public class MobileIT {
     static Process p;
 
     static boolean APPIUM_STARTED = false;
-    static boolean  local_Execution = true;
-    static boolean adesso_App = false;
+    static boolean  local_Execution = false;
+    static boolean adesso_App = true;
 
 
     // This method Is responsible for starting appium server.
@@ -82,32 +83,34 @@ public class MobileIT {
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability(CapabilityType.PLATFORM, "Android");
 
+        //capabilities.setCapability("automationName", "Appium");
+
         //capabilities.setCapability("avdLaunchTimeout", "10000");
         //capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 180);
 
         capabilities.setCapability("autoGrantPermissions", "true");
-
+        try {
         if (adesso_App == true) {
             System.out.println("Der Test verwenden: insurance App!!!!");
-            File file = new File("/adesso.spesenverwaltung.apk");
-            //File file = new File("/InsuranceCalculator.apk");
-            capabilities.setCapability("app", file.getAbsolutePath());
-        } else{
-          // File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            //File file = new File("/adesso.spesenverwaltung.apk");
             File file = new File("/InsuranceCalculator.apk");
             capabilities.setCapability("app", file.getAbsolutePath());
+        } else {
+             File file = new File("/home/vagrant/projects/belimo-mobile/InsuranceCalculator.apk");
+            //File file = new File("/InsuranceCalculator.apk");
+            capabilities.setCapability("app", file.getAbsolutePath());
 
-           }
+        }
 
 
+        if (local_Execution == false) {
 
-        if (local_Execution == true) {
-
-           // driver = new AppiumDriver(new URL("http://www.google.com:4723/wd/hub"), capabilities);
+            // driver = new AppiumDriver(new URL("http://www.google.com:4723/wd/hub"), capabilities);
 
             //WebDriver chrome = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), chromeCapabilities);
             //WebDriver chrome = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-            WebDriver driver = new RemoteWebDriver(new URL("http://10.98.171.74:4723/wd/hub"), capabilities);
+            //WebDriver driver = new RemoteWebDriver(new URL("http://10.98.171.74:4723/wd/hub"), capabilities);
+            WebDriver driver = new AppiumDriver(new URL("http://35.180.136.18:30723/wd/hub"), capabilities);
 
 
             // run against chrome
@@ -127,7 +130,7 @@ public class MobileIT {
 
             System.out.println("Appium server is started now on Server.");
 
-        } else        {
+        } else {
             driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             capabilities.setCapability("platformVersion", "7.1.1");
             //driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
@@ -143,6 +146,16 @@ public class MobileIT {
         //pw
         // userAndPass.get(1).sendKeys("test");
         // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            // TODO
+        } finally {
+               //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            System.out.println("Appium server Is ended now.");
+            //LogEntries logEntries = driver.manage().logs().get("driver");
+            //System.out.println(logEntries.toString());
+                }
+
+
     }
 
     /*
